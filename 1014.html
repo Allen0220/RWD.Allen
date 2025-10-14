@@ -19,7 +19,7 @@
 <!-- 導覽列 -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#">我的網站</a>
+        <a class="navbar-brand" href="#">郭晏辰的網站</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -42,7 +42,7 @@
 <!-- 主視覺區塊 -->
 <section class="bg-light text-center py-5">
     <div class="container">
-        <h1 class="display-5 fw-bold">歡迎來到郭晏辰範例網站</h1>
+        <h1 class="display-5 fw-bold">GPU顯示卡介紹網站</h1>
         <p class="lead text-muted">這是一個使用 Bootstrap 建立的簡單響應式頁面。</p>
         <button type="button" class="btn btn-primary btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
             了解更多
@@ -54,11 +54,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">了解</h5>
+                <h3 class="modal-title">「網站介紹」</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h1>更多</h1>
+                <h4>這是一個專門介紹顯示卡的網站，提供各款 GPU 的型號、核心規格、記憶體容量與時脈等重點資訊。</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -78,41 +78,121 @@
         <div class="col-md-4 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">特色一</h5>
-                    <p class="card-text">Bootstrap 提供了簡單好用的響應式網格系統。</p>
-                    <p class="text-muted small">透過 col 與 row 結構，你可以輕鬆建立彈性排版，不論在手機或桌機上都能完美呈現。</p>
-                    <p><img src="下載.jpg"></p>
-                    <button type="button" class="btn btn-primary btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <h5 class="card-title">RTX 3060</h5>
+                    <p class="card-text">最受信仰與信賴</p>
+                    <p class="text-muted small">
+                        MSI GeForce RTX™ 30 電競系列顯示卡，帶來性能、低噪與美學最佳融合的完美設計，在低溫安靜環境下，仍能享受高性能暢玩體驗。
+                    </p>
+                    <p><img src="3060.webp" alt="圖片" style="max-width: 100%; height: auto;"></p>
+                    <button type="button" class="btn btn-primary btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#rtx3060Modal">
                         了解更多
                     </button>
                 </div>
             </div>
         </div>
 
+        <!-- RTX 3060 Modal -->
+        <div class="modal fade" id="rtx3060Modal" tabindex="-1" aria-labelledby="rtx3060ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="rtx3060ModalLabel">RTX 3060 12GB 重點規格</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        <ul class="list-unstyled mb-0">
+                        <li><strong>CUDA 核心數：</strong>3,584</li>
+                        <li><strong>記憶體：</strong>12 GB GDDR6（192-bit，15 Gbps）</li>
+                        <li><strong>Boost 時脈：</strong>1,777 MHz</li>
+                        <li><strong>功耗 (TDP)：</strong>170 W</li>
+                        <li><strong>顯示輸出：</strong>HDMI 2.1、DisplayPort 1.4a</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
         <div class="col-md-4 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">特色二</h5>
-                    <p class="card-text">使用預設的排版與按鈕樣式即可快速開發。</p>
-                    <p class="text-muted small">Bootstrap 提供大量內建元件，例如按鈕、表單、導覽列，讓開發者節省時間。</p>
-                    <p><img src="images.png"></p>
-                    <button type="button" class="btn btn-primary btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <h5 class="card-title">RTX 5080</h5>
+                    <p class="card-text">極致效能 全面創新</p>
+                    <p class="text-muted small">
+                        ROG Astral GeForce RTX 5080 採四風扇設計與專利散熱技術，展現頂尖效能與穩定性。
+                    </p>
+                    <p><img src="RTX5080.webp" alt="RTX 5080 圖片" style="max-width: 100%; height: auto;"></p>
+                    <button type="button" class="btn btn-primary btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#rtx5080Modal">
                         了解更多
                     </button>
                 </div>
             </div>
         </div>
 
+        <!-- RTX 5080 Modal -->
+        <div class="modal fade" id="rtx5080Modal" tabindex="-1" aria-labelledby="rtx5080ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="rtx5080ModalLabel">RTX 5080 16GB 重點規格</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        <ul class="list-unstyled mb-0">
+                        <li><strong>CUDA 核心數：</strong>10,752</li>
+                        <li><strong>記憶體：</strong>16 GB GDDR7 (256-bit, 30 Gbps)</li>
+                        <li><strong>Boost 時脈：</strong>2,617 MHz (OC 模式 2,640 MHz)</li>
+                        <li><strong>基礎時脈：</strong>2,295 MHz</li>
+                        <li><strong>散熱設計：</strong>四風扇 + 均溫熱導板</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RX 9060 XT -->
         <div class="col-md-4 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">特色三</h5>
-                    <p class="card-text">自動適應手機、平板與桌面裝置。</p>
-                    <p class="text-muted small">只要設定適當的 col-breakpoint（如 col-md-4），就能讓版面在不同裝置下自動調整。</p>
-                    <p><img src="下載 (1).jpg"></p>
-                    <button type="button" class="btn btn-primary btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <h5 class="card-title">RX 9060 XT</h5>
+                    <p class="card-text">小巧高效 強勁散熱</p>
+                    <p class="text-muted small">
+                        ASUS Dual Radeon™ RX 9060 XT 結合強大散熱與高相容性，提供緊湊卻強悍的效能。
+                    </p>
+                    <p><img src="RX9060XT.webp" alt="RX 9060 XT 圖片" style="max-width: 100%; height: auto;"></p>
+                    <button type="button" class="btn btn-primary btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#rx9060Modal">
                         了解更多
                     </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RX 9060 XT Modal -->
+        <div class="modal fade" id="rx9060Modal" tabindex="-1" aria-labelledby="rx9060ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="rx9060ModalLabel">RX 9060 XT 8GB 重點規格</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        <ul class="list-unstyled mb-0">
+                        <li><strong>運算單元 (CU)：</strong>32</li>
+                        <li><strong>Stream Processors：</strong>2,048</li>
+                        <li><strong>記憶體：</strong>8 GB GDDR6 (128-bit, 20 Gbps)</li>
+                        <li><strong>Boost 時脈：</strong>最高 3,130 MHz</li>
+                        <li><strong>功耗 (TDP)：</strong>約 150 W</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    </div>
                 </div>
             </div>
         </div>
