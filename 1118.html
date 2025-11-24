@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>鍵盤介紹</title>
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#ffeef2;
+      margin:0;
+      padding:20px;
+      color:#222;
+    }
+
+    .container{
+      max-width:700px;
+      margin:auto;
+      display:flex;
+      flex-direction:column;
+      gap:30px;
+    }
+
+    /* ===== 卡片 ===== */
+    .card{
+      background:#fff0f4;
+      border-radius:8px;
+      padding:15px;
+      transition: background 0.25s ease;
+    }
+
+    /* ===== Hover 顏色 ===== */
+    .card:hover{
+      background:#fff8e6;
+    }
+
+    /* ===== 標題 Hover ===== */
+    .card h2:hover{
+      background:#d2f8ff;
+      display:inline-block;
+      transition:0.25s;
+    }
+
+    /* ===== 圖片框 ===== */
+    .img-box{
+      width:100%;
+      border:3px dashed #333;
+      padding:10px;
+      box-sizing:border-box;
+      background:white;
+      border-radius:6px;
+    }
+
+    .img-box img{
+      width:100%;
+      display:block;
+      border-radius:4px;
+    }
+
+    /* 文字 */
+    .desc{
+      margin-top:12px;
+      font-size:15px;
+      line-height:1.5;
+    }
+  </style>
+</head>
+<body>
+    <!-- 頁面大標題 -->
+<div class="main-title">互動式網頁</div>
+
+<style>
+  .main-title{
+    background:#f8e9a5;
+    font-size:32px;
+    font-weight:bold;
+    text-align:center;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+    transition:0.3s;
+  }
+
+  /* 滑鼠移過去變色 */
+  .main-title:hover{
+    background:#fff0b3;
+  }
+</style>
+
+<!-- 兩種鍵盤的連結區 -->
+<div class="nav-links">
+  <a href="#keyboard1">機械鍵盤</a>
+  <a href="#keyboard2">人體工學鍵盤</a>
+</div>
+
+<style>
+  .nav-links{
+    text-align:center;
+    margin:10px 0 30px 0;
+  }
+
+  .nav-links a{
+    margin:0 15px;
+    font-size:18px;
+    color:#0044aa;
+    text-decoration:none;
+    padding:5px 10px;
+    border-radius:6px;
+    transition:0.3s;
+  }
+
+  /* 滑鼠移過去變背景色 */
+  .nav-links a:hover{
+    background:#dff4ff;
+  }
+
+  /* 點擊過後變色 */
+  .nav-links a:visited{
+    color:#800080;   /* 紫色 */
+  }
+</style>
+
+
+
+  <div class="container">
+
+    <!-- 卡片 1 -->
+    <div class="card" id="keyboard1">
+      <h2>機械鍵盤 Mechanical Keyboard</h2>
+
+      <div class="img-box">
+        <img src="機械鍵盤.jpg" alt="機械鍵盤圖片" title="機械鍵盤">
+      </div>
+
+      <p class="desc">
+        機械鍵盤採用獨立軸體，按壓手感明確、反饋強烈，深受遊戲和打字使用者喜愛。
+      </p>
+    </div>
+
+    <!-- 卡片 2 -->
+    <div class="card" id="keyboard2">
+      <h2>人體工學鍵盤 Ergonomic Keyboard</h2>
+
+      <div class="img-box">
+        <img src="人體工學鍵盤.jpg" alt="人體工學鍵盤圖片" title="人體工學鍵盤">
+      </div>
+
+      <p class="desc">
+        人體工學鍵盤能減少手腕壓力，改善長時間工作的姿勢，也能降低手部疲勞。
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>
