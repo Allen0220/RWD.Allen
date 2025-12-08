@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國立勤益科技大學資訊管理系 (一頁式模擬 - 含輪播圖)</title>
+    <style>
+        /* 網頁基礎樣式 */
+        body { 
+            font-family: '微軟正黑體', 'Microsoft JhengHei', Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f4f4f4; 
+            color: #333; 
+            line-height: 1.6;
+        }
+        /* 頂部標頭 */
+        header { 
+            background-color: #004d99; /* 主藍色 */
+            color: white; 
+            padding: 20px 0; 
+            text-align: center; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 { 
+            margin: 0; 
+            font-size: 2.5em; 
+            letter-spacing: 2px;
+        }
+        /* 導覽列 */
+        nav { 
+            background-color: #003366; /* 深藍色 */
+            padding: 10px 0; 
+            text-align: center; 
+        }
+        nav a { 
+            color: white; 
+            margin: 0 15px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            padding: 5px 10px; 
+            border-radius: 5px; 
+            transition: background-color 0.3s;
+        }
+        nav a:hover { 
+            background-color: #0055aa; 
+        }
+        
+        /* ============== 輪播圖樣式開始 ============== */
+        .carousel-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .carousel-slide {
+            display: none; /* 預設隱藏所有圖片 */
+            width: 100%;
+            height: auto;
+            /* 由於無法載入圖片，這裡使用一個簡單的背景色和文字模擬圖片 */
+            background-color: #e0e0e0; 
+            text-align: center;
+            padding: 100px 0;
+            font-size: 2em;
+            color: #666;
+            box-sizing: border-box;
+        }
+        .carousel-slide img {
+             width: 100%;
+             height: auto;
+             display: block;
+        }
+        /* 導覽點容器 */
+        .dots-container {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #fff;
+        }
+        /* 導覽點 */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        .active, .dot:hover {
+            background-color: #004d99; /* 點擊或當前圖片的顏色 */
+        }
+        /* ============== 輪播圖樣式結束 ============== */
+        
+        /* 主要內容區塊 */
+        .container { 
+            width: 90%; 
+            max-width: 1200px; 
+            margin: 30px auto; 
+            padding: 20px 40px; 
+            background-color: white; 
+            border-radius: 10px; 
+            box-shadow: 0 0 20px rgba(0,0,0,0.05); 
+        }
+        /* 區塊標題 */
+        .section { 
+            margin-bottom: 40px; 
+            padding-bottom: 20px; 
+            border-bottom: 2px solid #ddd; 
+        }
+        .section h2 { 
+            color: #004d99; 
+            border-left: 6px solid #ffcc00; 
+            padding-left: 15px; 
+            font-size: 1.8em;
+        }
+        /* 列表樣式 */
+        ul { 
+            list-style-type: none; 
+            padding: 0; 
+        }
+        li { 
+            margin-bottom: 12px; 
+            padding-left: 1.5em;
+            text-indent: -1.5em;
+        }
+        li:before {
+            content: "•";
+            color: #ffcc00; 
+            font-weight: bold;
+            display: inline-block;
+            width: 1.5em;
+        }
+        /* 連結樣式 */
+        .link-item a { 
+            color: #007bff; 
+            text-decoration: none; 
+            font-weight: 500;
+        }
+        .link-item a:hover { 
+            text-decoration: underline; 
+            color: #004d99;
+        }
+        /* 專班排版 */
+        .program-grid { 
+            display: flex; 
+            justify-content: space-around; 
+            text-align: center; 
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .program-item {
+            width: 30%; 
+            min-width: 250px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            transition: box-shadow 0.3s;
+        }
+        .program-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        /* 頁尾 */
+        footer {
+            background-color: #333; 
+            color: white; 
+            padding: 20px 0;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        
+    </style>
+    <script>
+        // 外部連結提示函數
+        function comingSoon() {
+            window.alert('敬請期待');
+            return false; // 阻止連結的預設跳轉行為
+        }
+
+        // 輪播圖變數
+        let slideIndex = 1;
+        let slideTimer;
+
+        // 顯示特定的圖片 (n: 第幾張圖)
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("carousel-slide");
+            let dots = document.getElementsByClassName("dot");
+            
+            // 循環邏輯：如果超過最後一張，回到第一張
+            if (n > slides.length) {slideIndex = 1}
+            // 循環邏輯：如果小於第一張，回到最後一張
+            if (n < 1) {slideIndex = slides.length}
+            
+            // 隱藏所有圖片
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            // 移除所有導覽點的 active 類別
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            
+            // 顯示當前圖片，並標記導覽點
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+        }
+
+        // 自動播放邏輯
+        function autoSlide() {
+            // 清除現有計時器，避免重複啟動
+            clearTimeout(slideTimer); 
+            
+            slideIndex++;
+            let slides = document.getElementsByClassName("carousel-slide");
+            if (slideIndex > slides.length) {slideIndex = 1}
+            
+            showSlides(slideIndex);
+            
+            // 每 5000 毫秒 (5秒) 切換一次
+            slideTimer = setTimeout(autoSlide, 5000); 
+        }
+
+        // 頁面載入完成後初始化輪播
+        window.onload = function() {
+            // 確保網頁功能載入完成後再啟動輪播
+            showSlides(slideIndex);
+            autoSlide();
+        };
+
+        // 當用戶點擊導覽點時，手動切換圖片並重置自動播放計時器
+        function currentSlide(n) {
+            clearTimeout(slideTimer); // 停止自動播放
+            showSlides(slideIndex = n); // 切換到指定圖片
+            slideTimer = setTimeout(autoSlide, 5000); // 重新啟動自動播放
+        }
+
+    </script>
+</head>
+<body>
+    <header>
+        <h1>國立勤益科技大學資訊管理系(所)</h1>
+        <p>Department of Information Management National Chin-Yi University of Technology</p>
+    </header>
+
+    <nav>
+        <a href="#" onclick="comingSoon()">招生訊息</a>
+        <a href="#" onclick="comingSoon()">首頁</a>
+        <a href="#" onclick="comingSoon()">關於本系</a>
+        <a href="#" onclick="comingSoon()">師資介紹</a>
+        <a href="#" onclick="comingSoon()">課程資訊</a>
+        <a href="#" onclick="comingSoon()">檔案下載</a>
+        <a href="#" onclick="comingSoon()">勤益首頁</a>
+    </nav>
+
+    <div class="carousel-container">
+        
+        <div class="carousel-slide">
+            <img src="ncut1.jpg" alt="資管系輪播圖 1">
+        </div>
+        
+        <div class="carousel-slide">
+            <img src="ncut2.jpg" alt="資管系輪播圖 2">
+        </div>
+        
+        <div class="carousel-slide">
+            <img src="ncut3.jpg" alt="資管系輪播圖 3">
+        </div>
+
+        <div class="dots-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="section">
+            <h2>🏆 榮譽榜與新聞焦點</h2>
+            <ul>
+                <li>**教師榮譽** 恭賀本系黃淑賢老師榮獲112年臺中市**SUPER教師獎**。</li>
+                <li>**競賽佳績** 學生團隊榮獲 AI程式交易策略挑戰賽冠軍。</li>
+                <li>**競賽佳績** 學生團隊榮獲 2023運算思維創意遊戲設計大賽**最佳遊戲設計獎第二名**。</li>
+                <li>**傑出表現** 林宸緯同學榮獲**總統教育獎**。</li>
+                <li class="link-item"><a href="#" onclick="comingSoon()">查看更多【榮譽榜】資訊...</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>📢 重要公告</h2>
+            <ul>
+                <li class="link-item">
+                    **[徵才/活動]** 鴻海iPEBG 午餐·相遇未來活動 (含現場面談機會)
+                    <a href="#" onclick="comingSoon()"> (活動詳情與報名連結)</a>
+                </li>
+                <li class="link-item">
+                    **[徵才/實習]** 淳安電子股份有限公司實習機會 (車用電子、鼎新ERP Tiptop系統運維)
+                    <a href="#" onclick="comingSoon()"> (聯繫張裕幸主任)</a>
+                </li>
+                <li>**[校務]** 113年春節期間各大門及各大樓門禁管制時間。</li>
+                <li class="link-item"><a href="#" onclick="comingSoon()">查看更多【重要公告】...</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🎓 專班簡介與資訊</h2>
+            <div class="program-grid">
+                <div class="program-item">
+                    <h3>產學攜手專班</h3>
+                    <p>結合產業實務與學術理論，培養即戰力人才。</p>
+                    <a href="#" onclick="comingSoon()">專班介紹</a>
+                </div>
+                <div class="program-item">
+                    <h3>外國學生專班</h3>
+                    <p>提供國際學生優質的資訊管理專業教育。</p>
+                    <a href="#" onclick="comingSoon()">專班介紹</a>
+                </div>
+                <div class="program-item">
+                    <h3>技優專班</h3>
+                    <p>招收具備資訊管理相關領域優異技術之學生。</p>
+                    <a href="#" onclick="comingSoon()">專班介紹</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📞 聯絡我們與快速連結</h2>
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px;">
+                <div style="min-width: 300px;">
+                    <h3>快速連結</h3>
+                    <ul>
+                        <li class="link-item"><a href="#" onclick="comingSoon()">校務行政網路系統-學生篇</a></li>
+                        <li class="link-item"><a href="#" onclick="comingSoon()">校務行政網路系統-教師篇</a></li>
+                    </ul>
+                </div>
+                <div style="min-width: 300px;">
+                    <h3>系辦公室資訊</h3>
+                    <p><strong>地址:</strong> 411030臺中市太平區坪林里中山路二段57號</p>
+                    <p><strong>TEL:</strong> (04)23924505 (分機: 7911(網頁), 7912(課務)...)</p>
+                    <p><strong>FAX:</strong> (04)23923725</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>國立勤益科技大學資訊管理系 | Department of Information Management National Chin-Yi University of Technology</p>
+        <p>&copy; 2022 NCUT MIS Website</p>
+    </footer>
+</body>
+</html>
